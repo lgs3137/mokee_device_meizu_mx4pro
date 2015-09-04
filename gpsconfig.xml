@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glgps xmlns="http://www.glpals.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.glpals.com/glconfig.xsd" >
+  <!--HAL Confguration  -->
+  <hal    	   
+       PortName="/dev/ttySAC1"
+       BaudRate="921600"
+       GpioNStdbyPath="/sys/class/misc/gps/device/pwr"
+       GpioDelayMs="130"
+       LogEnabled="false"
+       LogDirectory="/data/gps/log/"
+       NmeaOutName="/data/gps/gpspipe"
+       CtrlPipe="/data/gps/glgpsctrl"
+       NvStorageDir="/data/gps/"
+       GpslogdPipePath="/data/gps/.gpslogd.pipe"
+       Log="FILE"
+
+       TcpConnectionTimeout="20"
+       SuplEnable="true"
+       SuplMsbCapable="true"
+       SuplMsaCapable="true"
+       SuplEcidCapable="false"
+       SuplUseApn="false"
+       SuplServer="supl.google.com"
+       SuplPort="7276"
+       SuplTlsEnable="false"
+       SuplTlsCertPath="/data/gps/cacertqa1.pem"
+       SuplTlsStopForInvPath="true"
+       SuplSslMethod="TLSv1"
+       SuplSslVerify="peer" 
+       SuplLogEnable="true"
+       SuplLogFullName="/data/gps/log/supllog.txt"
+       SuplMinorVersion="0"
+       SuplVersion="1" 
+
+       LbsEnable="true"
+       LbsLocal="false"
+       LbsServer="bcmls2.glpals.com"
+       LbsPort="7275"
+       LbsLog="true"
+       LbsTAC="10119100" 
+       LbsSyncLto="true"
+       SyncLto="true"   
+       LtoFileName="lto.dat"
+       LtoDir="/data/gps/"
+       LtoSyncThresholdDays="3"
+
+       HulaEnable="true"
+       HulaLog="true"
+
+  />	   
+	
+  <!-- NOTE: BrcmRFwildBase, BrcmRFclkDiv, anBrcmRFclkRefHz only needed for Broadcom RF front end test chips
+            ( i.e. GL_RF_2075_BRCM and GL_RF_PALS7_BRCM ) -->
+
+  <gll
+       LogPriMask=" LOG_INFO" 
+       LogFacMask=" LOG_DEFAULT "
+       FrqPlan="FRQ_PLAN_26MHZ_2PPM_13MHZ_300PPB"
+       RfType="GL_RF_47531_BRCM_EXT_LNA"
+  />
+
+  <!-- List of jobs can be performed by the GPS controller    -->
+
+  <!-- The default job  all parameters are set to default values  -->
+  <job id="normal">
+      <task >
+		<req_pos validfix="10"/>
+      </task>
+   </job>
+
+  <job id="periodic">
+      <task >
+      </task>
+   </job>
+
+ </glgps>

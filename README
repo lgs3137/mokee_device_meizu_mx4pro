@@ -1,0 +1,17 @@
+Copyright 2015 - The CyanogenMod Project
+
+Device configuration for Meizu MX4 Pro
+
+WORK IN PROGRESS.
+------------------------------------------------------------------
+MoKee OpenSource
+
+Getting Started
+
+To get started with MoKee OpenSource, you will need to get familiar with Repo and Version Control with Git.
+
+To initialize your local repository using the MoKee trees, use a command like this:
+repo init -u https://github.com/MoKee/android.git -b mkl-mr1
+
+Then to sync up:
+repo sync -j16

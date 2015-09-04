@@ -1,0 +1,396 @@
+<mixer>
+
+  <!-- default routes -->
+  <ctl name="EPOUT Digital Switch" value="0"></ctl>
+  <ctl name="HPOUT Digital Switch" value="0"></ctl>
+  <ctl name="EPOUT Input 1" value="None"></ctl>
+  <ctl name="EPOUT Input 2" value="None"></ctl>
+  <ctl name="HPOUTL Input 1" value="None"></ctl>
+  <ctl name="HPOUTL Input 2" value="None"></ctl>
+  <ctl name="HPOUTR Input 1" value="None"></ctl>
+  <ctl name="HPOUTR Input 2" value="None"></ctl>
+  <ctl name="AIF1TX1 Input 1" value="None"></ctl>
+  <ctl name="AIF1TX1 Input 2" value="None"></ctl>
+  <ctl name="AIF1TX2 Input 1" value="None"></ctl>
+  <ctl name="AIF1TX2 Input 2" value="None"></ctl>
+  <ctl name="AIF2TX1 Input 1" value="None"></ctl>
+  <ctl name="AIF2TX1 Input 2" value="None"></ctl>
+  <ctl name="AIF2TX2 Input 1" value="None"></ctl>
+  <ctl name="AIF2TX2 Input 2" value="None"></ctl>
+  <ctl name="AIF3TX1 Input 1" value="None"></ctl>
+  <ctl name="AIF3TX1 Input 2" value="None"></ctl>
+  <ctl name="AIF3TX2 Input 1" value="None"></ctl>
+  <ctl name="AIF3TX2 Input 2" value="None"></ctl>
+  <ctl name="ES705 RX1 Enable" value="0"></ctl> <!-- Enable es705 runtime suspend -->
+  <ctl name="Internal Route" value="1"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+
+  <path name="earphones">
+    <!-- AIF1RX -> EPOUT -->
+    <ctl name="EPOUT Input 1" value="AIF1RX1"></ctl>
+    <ctl name="EPOUT Input 2" value="AIF1RX2"></ctl>
+    <ctl name="EPOUT Digital Switch" value="1"></ctl>
+    <ctl name="Earpiece Switch" value="1"></ctl>
+  </path>
+ 
+  <path name="speaker">
+    <!-- AIF1RX -> ISRC2 -> AIF3TX -> S.PA (Normal: 48KHz->48KHz; Incall: 16KHz->48KHz) -->
+    <ctl name="ISRC2INT1 Input" value="AIF1RX1"></ctl>
+    <ctl name="ISRC2INT2 Input" value="AIF1RX2"></ctl>
+    <ctl name="AIF3TX1 Input 1" value="ISRC2INT1"></ctl>
+    <ctl name="AIF3TX2 Input 1" value="ISRC2INT2"></ctl>
+  </path>
+ 
+  <path name="headphones">
+    <!-- AIF1RX -> EQ -> HPOUT -->
+    <ctl name="EQ1 Input" value="AIF1RX1"></ctl>
+    <ctl name="EQ2 Input" value="AIF1RX2"></ctl>
+    <ctl name="HPOUTL Input 1" value="EQ1"></ctl>
+    <ctl name="HPOUTR Input 1" value="EQ2"></ctl>
+    <ctl name="HPOUT Digital Switch" value="1"></ctl>
+    <ctl name="Headphone Switch" value="1"></ctl>
+  </path>
+
+  <path name="bt-sco-headset">
+    <!-- AIF1RX -> ISRC1 -> AIF2TX -> BTSCO (48KHz/16KHz->8KHz) -->
+    <ctl name="ISRC1DEC1 Input" value="AIF1RX1"></ctl>
+    <ctl name="ISRC1DEC2 Input" value="AIF1RX2"></ctl>
+    <ctl name="AIF2TX1 Input 1" value="ISRC1DEC1"></ctl>
+    <ctl name="AIF2TX2 Input 1" value="ISRC1DEC2"></ctl>
+  </path>
+ 
+  <path name="main-mic">
+    <!-- DMIC -> NR-C -> NR-A -> AP: power supplied by wm8998 micbias2 -->
+    <ctl name="AIF1TX1 Input 1" value="IN2L"></ctl>
+    <ctl name="AIF1TX2 Input 1" value="IN2L"></ctl>
+    <ctl name="IN2MUX Input" value="IN2A"></ctl>
+    <ctl name="Sec Mic Switch" value="1"></ctl>
+  </path>
+ 
+  <path name="second-mic">
+    <!-- DMIC -> NR-C -> NR-A -> AP -->
+    <!-- the same as main-main -->
+    <ctl name="AIF1TX1 Input 1" value="IN2L"></ctl>
+    <ctl name="AIF1TX2 Input 1" value="IN2L"></ctl>
+    <ctl name="IN2MUX Input" value="IN2A"></ctl>
+    <ctl name="Sec Mic Switch" value="1"></ctl>
+  </path>
+
+  <path name="headset-mic">
+    <!-- Headset-mic -> IN2B -> codec -> AIF1TX1 -> NR -> AP -->
+    <ctl name="AIF1TX1 Input 1" value="IN2L"></ctl>
+    <ctl name="AIF1TX2 Input 1" value="IN2L"></ctl>
+    <ctl name="IN2MUX Input" value="IN2B"></ctl>
+    <ctl name="Headset Mic Switch" value="1"></ctl>
+    <ctl name="IN2 Volume" value="31"></ctl>
+  </path>
+
+  <path name="bt-sco-mic">
+    <!-- AIF2RX -> ISRC1 -> AIF1TX -> NR (8KHz->16KHz/48KHz) -->
+    <ctl name="ISRC1INT1 Input" value="AIF2RX1"></ctl>
+    <ctl name="ISRC1INT2 Input" value="AIF2RX2"></ctl>
+    <ctl name="AIF1TX1 Input 1" value="ISRC1INT1"></ctl>
+    <ctl name="AIF1TX2 Input 1" value="ISRC1INT2"></ctl>
+  </path>
+
+  <!-- These are useful named paths -->
+
+  <!-- Playback paths -->
+
+  <path name="media-earphones">
+    <ctl name="ES705 RX1 Enable" value="0"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="1"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="earphones"></path>
+  </path>
+
+  <path name="media-speaker">
+    <ctl name="ES705 RX1 Enable" value="0"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="1"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="speaker"></path>
+  </path>
+
+  <path name="media-headphones">
+    <ctl name="ES705 RX1 Enable" value="0"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="1"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="headphones"></path>
+  </path>
+    <path name="media-speaker-xunfei">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="2"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="speaker"></path>
+  </path>
+  <path name="media-headphones-xunfei">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="3"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="headphones"></path>
+  </path>
+  <path name="media-bt-sco-headset-xunfei">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="3"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="bt-sco-headset"></path>
+  </path>
+  <path name="media-earphones-xunfei">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="2"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="earphones"></path>
+  </path>
+  
+  <path name="speaker-and-headphones">
+    <ctl name="ES705 RX1 Enable" value="0"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="1"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="speaker"></path>
+    <path name="headphones"></path>
+  </path>
+
+  <path name="speaker-and-bt-sco">
+    <ctl name="ES705 RX1 Enable" value="0"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="1"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="speaker"></path>
+    <path name="bt-sco-headset"></path>
+  </path>
+ 
+  <path name="media-bt-sco-headset">
+    <!-- AIF1RX -> ASRC1 -> AIF2TX -> BTSCO -->
+    <ctl name="ES705 RX1 Enable" value="0"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="1"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="bt-sco-headset"></path>
+  </path>
+
+ 
+  <!-- Capture paths -->
+
+  <path name="media-main-mic">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="2"></ctl> <!-- ROUTE_BOARD_MIC_RECORD -->
+    <path name="main-mic"></path>
+  </path>
+
+  <path name="media-second-mic">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="2"></ctl> <!-- ROUTE_BOARD_MIC_RECORD -->
+    <path name="second-mic"></path>
+  </path>
+
+  <path name="media-headset-mic">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="3"></ctl> <!-- ROUTE_HEADSET_MIC_RECORD -->
+    <path name="headset-mic"></path>
+  </path>
+ 
+  <path name="media-bt-sco-mic">
+    <!-- AIF2RX -> ASRC2 -> AIF1TX -> NR -->
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="3"></ctl> <!-- ROUTE_HEADSET_MIC_RECORD -->
+    <path name="bt-sco-mic"></path>
+  </path>
+
+  <!-- Capture sample rate :44.1khz -->
+  <path name="media-main-mic-44-1khz">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="23"></ctl> <!-- ROUTE_BOARD_MIC_RECORD  2-->
+    <path name="main-mic"></path>
+  </path>
+
+  <path name="media-second-mic-44-1khz">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="23"></ctl> <!-- ROUTE_BOARD_MIC_RECORD 2 -->
+    <path name="second-mic"></path>
+  </path>
+
+  <path name="media-headset-mic-44-1khz">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="24"></ctl> <!-- ROUTE_HEADSET_MIC_RECORD -->
+    <path name="headset-mic"></path>
+  </path>
+
+  <path name="media-bt-sco-mic-44-1khz">
+    <!-- AIF2RX -> ASRC2 -> AIF1TX -> NR -->
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="24"></ctl> <!-- ROUTE_HEADSET_MIC_RECORD -->
+    <path name="bt-sco-mic"></path>
+  </path>
+ 
+  <!-- Voice call paths -->
+
+  <path name="voice-call-earphones">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="4"></ctl> <!-- ROUTE_VOICE_CALL_CT -->
+    <path name="earphones"></path>
+  </path>
+
+  <path name="voice-call-speaker">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="5"></ctl> <!-- ROUTE_VOICE_CALL_FT -->
+    <path name="speaker"></path>
+  </path>
+
+  <path name="voice-call-headset">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="7"></ctl> <!-- ROUTE_VOICE_CALL_HEADSET -->
+    <path name="headphones"></path>
+    <ctl name="HPOUTL Input 1" value="EQ1"></ctl>
+    <ctl name="HPOUTL Input 2" value="EQ2"></ctl>
+    <ctl name="HPOUTR Input 1" value="EQ2"></ctl>
+    <ctl name="HPOUTR Input 2" value="EQ1"></ctl>
+  </path>
+
+  <path name="voice-call-headphones">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="6"></ctl> <!-- ROUTE_VOICE_CALL_HEADSET -->
+    <path name="headphones"></path>
+    <ctl name="HPOUTL Input 1" value="EQ1"></ctl>
+    <ctl name="HPOUTL Input 2" value="EQ2"></ctl>
+    <ctl name="HPOUTR Input 1" value="EQ2"></ctl>
+    <ctl name="HPOUTR Input 2" value="EQ1"></ctl>
+  </path>
+
+  <path name="voice-bt-sco-headset">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="7"></ctl> <!-- ROUTE_VOICE_CALL_HEADSET -->
+    <ctl name="AIF2TX1 Input 1 Volume" value="40"></ctl>
+    <ctl name="AIF2TX2 Input 1 Volume" value="40"></ctl>
+    <path name="bt-sco-headset"></path>
+  </path>
+
+  <path name="voice-call-main-mic">
+    <!-- DMIC -> NR-C -> NR-B -> BP -->
+    <path name="main-mic"></path>
+  </path>
+
+  <path name="voice-call-headset-mic">
+    <!-- Headset-mic -> IN2B -> codec -> AIF1TX1 -> NR -> BP -->
+    <path name="headset-mic"></path>
+  </path>
+
+  <path name="voice-bt-sco-mic">
+    <path name="bt-sco-mic"></path>
+  </path>
+
+  <!-- VoIP paths -->
+ 
+  <path name="communication-earphones">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="8"></ctl> <!-- ROUTE_VOIP_CT -->
+    <path name="earphones"></path>
+  </path>
+ 
+  <path name="communication-speaker">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="9"></ctl> <!-- ROUTE_VOIP_FT -->
+    <path name="speaker"></path>
+  </path>
+
+  <path name="communication-headphones">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="10"></ctl> <!-- ROUTE_VOIP_HEADSET -->
+    <path name="headphones"></path>
+  </path>
+
+   <path name="communication-headset">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="11"></ctl> <!-- ROUTE_VOIP_HEADSET -->
+    <path name="headphones"></path>
+  </path>
+
+  <path name="communication-bt-sco-headset">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="11"></ctl> <!-- ROUTE_VOIP_HEADSET -->
+    <path name="bt-sco-headset"></path>
+  </path>
+
+  <path name="communication-main-mic">
+    <path name="main-mic"></path>
+  </path>
+
+  <path name="communication-headset-mic">
+    <path name="headset-mic"></path>
+  </path>
+
+  <path name="communication-bt-sco-mic">
+    <path name="bt-sco-mic"></path>
+  </path>
+
+  <!-- Voice recognition paths -->
+
+  <path name="voice-rec-earphones">
+    <ctl name="ES705 RX1 Enable" value="0"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="1"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="earphones"></path>
+  </path>
+ 
+  <path name="voice-rec-speaker">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="17"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="speaker"></path>
+  </path>
+
+  <path name="voice-rec-headphones">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Enable es705 runtime suspend -->
+    <ctl name="Internal Route" value="17"></ctl> <!-- ROUTE_CVQ_DHWPT -->
+    <path name="headphones"></path>
+  </path>
+ 
+  <path name="voice-rec-main-mic">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="17"></ctl>
+  </path>
+
+  <path name="voice-rec-headset-mic">
+    <!-- same with voice-rec-main-mic??? -->
+    <ctl name="ES705 RX1 Enable" value="1"></ctl> <!-- Disable es705 runtime suspend -->
+    <ctl name="Internal Route" value="17"></ctl>
+  </path>
+
+  <!-- voice call auto answer path -->
+
+  <path name="voice-call-auto-answer-playback">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl>
+    <ctl name="Internal Route" value="12"></ctl>
+  </path>
+
+  <path name="voice-call-auto-answer-capture">
+    <ctl name="ES705 RX1 Enable" value="1"></ctl>
+    <ctl name="Internal Route" value="12"></ctl>
+  </path>
+
+  <!-- DUMMY path -->
+  <path name="dummy">
+    <ctl name="EPOUT Digital Switch" value="0"></ctl>
+    <ctl name="HPOUT Digital Switch" value="0"></ctl>
+    <ctl name="EPOUT Input 1" value="None"></ctl>
+    <ctl name="EPOUT Input 2" value="None"></ctl>
+    <ctl name="HPOUTL Input 1" value="None"></ctl>
+    <ctl name="HPOUTR Input 1" value="None"></ctl>
+    <!--<ctl name="AIF1TX1 Input 1" value="None"></ctl>
+    <ctl name="AIF1TX2 Input 1" value="None"></ctl>-->
+    <ctl name="AIF2TX1 Input 1" value="None"></ctl>
+    <ctl name="AIF2TX2 Input 1" value="None"></ctl>
+    <!--<ctl name="AIF3TX1 Input 1" value="None"></ctl>
+    <ctl name="AIF3TX2 Input 1" value="None"></ctl>-->
+  </path>
+
+
+  <!-- Factory test path -->
+
+  <path name="test-earphones">
+    <!-- Headset-mic -> EPOUT -->
+  </path>
+  <path name="test-headphone">
+    <!-- Headset-mic -> Headphone -->
+  </path>
+  <path name="test-speaker">
+    <!-- Headset-mic -> AIF3TX -> S.PA -->
+  </path>
+  <path name="test-pri-mic">
+    <!-- Pri-mic -> NR-D -> AIF1RX -> Headphone -->
+  </path>
+  <path name="test-sec-mic">
+    <!-- Sec-mic -> NR-D -> AIF1RX -> Headphone -->
+  </path>
+  <path name="test-ter-mic">
+    <!-- Ter-mic -> NR-D -> AIF1RX -> Headphone -->
+  </path>
+  <path name="test-modem-loopback">
+    <!-- Headset-mic -> AIF1TX -> NR -> Modem -> NR -> AIF1RX -> Headphone & earphone -->
+  </path>
+
+</mixer>
