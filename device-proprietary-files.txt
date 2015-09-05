@@ -90,6 +90,7 @@ lib/extend/libExtractor.AVI.so
 lib/extend/libExtractor.WAV.so
 lib/extend/libCodec.mpegdec.so
 lib/extend/libExtractor.DTS.so
+lib/hw/gps.default.so
 lib/hw/gralloc.exynos5.so
 lib/hw/hwcomposer.exynos5.so
 lib/hw/memtrack.exynos5.so
