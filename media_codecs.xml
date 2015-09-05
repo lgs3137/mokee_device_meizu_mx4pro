@@ -163,7 +163,5 @@ Only the three quirks included above are recognized at this point:
         <MediaCodec name="OMX.google.aac.encoder" type="audio/mp4a-latm" />
         <MediaCodec name="OMX.google.flac.encoder" type="audio/flac" />
         <MediaCodec name="OMX.google.vp8.encoder" type="video/x-vnd.on2.vp8" />
-	<!-- for meizu product -->
-        <MediaCodec name="MP3Encoder" type="audio/mpeg" />
     </Encoders>
 </MediaCodecs>

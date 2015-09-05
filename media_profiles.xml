@@ -344,11 +344,6 @@
         minSampleRate="16000" maxSampleRate="48000"
         minChannels="1" maxChannels="1" />
 
-    <AudioEncoderCap name="aaceld" enabled="true"
-        minBitRate="16000" maxBitRate="192000"
-        minSampleRate="16000" maxSampleRate="48000"
-        minChannels="1" maxChannels="1" />
-
     <AudioEncoderCap name="amrwb" enabled="true"
         minBitRate="6600" maxBitRate="23050"
         minSampleRate="16000" maxSampleRate="16000"
@@ -358,11 +353,6 @@
         minBitRate="5525" maxBitRate="12200"
         minSampleRate="8000" maxSampleRate="8000"
         minChannels="1" maxChannels="1" />
-
-    <AudioEncoderCap name="mp3" enabled="true"
-        minBitRate="32000" maxBitRate="128000"
-        minSampleRate="32000" maxSampleRate="44100"
-        minChannels="1" maxChannels="2" />
 
     <!--
         FIXME:
