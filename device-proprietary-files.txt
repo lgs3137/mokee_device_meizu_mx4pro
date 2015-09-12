@@ -94,11 +94,9 @@ lib/hw/gps.default.so
 lib/hw/gralloc.exynos5.so
 lib/hw/hwcomposer.exynos5.so
 lib/hw/memtrack.exynos5.so
-lib/hw/gps.default.so
 lib/hw/camera.m76.so
 lib/hw/flp.default.so
 lib/hw/power.default.so
-lib/hw/vibrator.default.so
 lib/hw/sensors.m76.so
 lib/hw/nfc_nci.pn54x.default.so
 lib/libcaFingerPrintShared.so
@@ -151,12 +149,9 @@ lib/libtiff.so
 lib/libvcm.so
 lib/libvirtualdisplaymodule.so
 lib/libvirtualdisplay.so
-lib/omx/libOMX.Exynos.AAC.Decoder.so
 lib/omx/libOMX.Exynos.AVC.Decoder.so
 lib/omx/libOMX.Exynos.AVC.Encoder.so
-lib/omx/libOMX.Exynos.FLAC.Decoder.so
 lib/omx/libOMX.Exynos.HEVC.Decoder.so
-lib/omx/libOMX.Exynos.MP3.Decoder.so
 lib/omx/libOMX.Exynos.MPEG2.Decoder.so
 lib/omx/libOMX.Exynos.MPEG4.Decoder.so
 lib/omx/libOMX.Exynos.MPEG4.Encoder.so
@@ -199,7 +194,6 @@ vendor/firmware/TPK-TOL2W.img
 vendor/firmware/WTK-OGSB.img
 vendor/lib/egl/gpr_list.cfg
 vendor/lib/egl/libGLES_mali.so
-vendor/lib/libbt-vendor.so
 vendor/lib/libmalicore.bc
 vendor/lib/libRSDriverArm.so
 vendor/lib/libsfb_hal.so

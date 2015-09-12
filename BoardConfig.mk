@@ -1,5 +1,8 @@
 USE_CAMERA_STUB := true
 
+# Include path
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+
 # inherit from the proprietary version
 -include vendor/meizu/mx4pro/BoardConfigVendor.mk
 
@@ -26,6 +29,10 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 # Bluetooth
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/meizu/mx4pro/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/meizu/mx4pro/bluetooth/vnd_mx4pro.txt
+
+
+#Audio
 
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(HOST_OS),linux)

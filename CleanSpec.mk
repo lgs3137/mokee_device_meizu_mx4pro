@@ -43,23 +43,3 @@
 #$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/JAVA_LIBRARIES/core_intermediates)
 #$(call add-clean-step, find $(OUT_DIR) -type f -name "IGTalkSession*" -print0 | xargs -0 rm -f)
 #$(call add-clean-step, rm -rf $(PRODUCT_OUT)/data/*)
-
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/build.prop)
-
-# Switching to jemalloc requires deleting these files.
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/obj/STATIC_LIBRARIES/libc_*)
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/obj/SHARED_LIBRARIES/libc_*)
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/obj/STATIC_LIBRARIES/libart_*)
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/obj/STATIC_LIBRARIES/libartd_*)
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/obj/SHARED_LIBRARIES/libart_*)
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/obj/SHARED_LIBRARIES/libartd_*)
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/build.prop)
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/build.prop)
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/build.prop)
-
-# bumping up opengles version
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/build.prop)
-
-# Reduce IMS logging
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/build.prop)
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/build.prop)
