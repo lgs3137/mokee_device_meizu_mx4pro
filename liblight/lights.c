@@ -38,10 +38,12 @@
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 
-char const*const LCD_FILE
+char const *const LCD_FILE
         = "/sys/class/backlight/lm3697_bl/brightness";
-char const*const LCD_FILE_MAX
+char const *const LCD_FILE_MAX
         = "/sys/class/backlight/lm3697_bl/max_brightness";
+char const *const LED_FILE
+        = "/sys/class/leds/mx7-led/brightness";
 
 /**
  * device methods
@@ -131,6 +133,25 @@ set_light_backlight(struct light_device_t* dev,
     return err;
 }
 
+static int set_light_notifications(struct light_device_t* dev,
+			struct light_state_t const* state)
+{
+    int brightness = rgb_to_brightness(state);
+    int v = 0;
+    int ret = 0;
+    pthread_mutex_lock(&g_lock);
+
+    if (brightness+state->color == 0 || brightness > 100) {
+        if (state->color & 0x00ffffff)
+	    v = 767;
+        } else
+            v = 256;
+
+    ret = write_int(LED_FILE, v);
+    pthread_mutex_unlock(&g_lock);
+    return ret;
+}
+
 /** Close the lights device */
 static int
 close_lights(struct light_device_t *dev)
@@ -157,6 +178,8 @@ static int open_lights(const struct hw_module_t* module, char const* name,
 
     if (0 == strcmp(LIGHT_ID_BACKLIGHT, name))
         set_light = set_light_backlight;
+    else if (0 == strcmp(LIGHT_ID_NOTIFICATIONS, name))
+        set_light = set_light_notifications;
     else
         return -EINVAL;
 
@@ -187,7 +210,7 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
     .version_major = 1,
     .version_minor = 0,
     .id = LIGHTS_HARDWARE_MODULE_ID,
-    .name = "m76 lights module",
+    .name = "M76 lights module",
     .author = "Tatsuyuki Ishi",
     .methods = &lights_module_methods,
 };

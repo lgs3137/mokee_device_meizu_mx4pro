@@ -116,6 +116,7 @@ lib/libfimg.so
 lib/libfp_client.so
 lib/libfpservice.so
 lib/libgdmcprov.so
+lib/libhal.so
 lib/libhdmimodule.so
 lib/libhdmi.so
 lib/libhwcutilsmodule.so
